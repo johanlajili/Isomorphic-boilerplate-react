@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+  mode: 'development',
   devtool: 'inline-source-map',
   entry: ['./app/index.js'],
   output: {
@@ -10,14 +11,14 @@ module.exports = {
     filename: 'bundle.js',
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /.js$/,
         loader: 'babel-loader',
         include: path.join(__dirname, 'app'),
         exclude: /node_module/,
         query: {
-          presets: ['es215', 'react'],
+          presets: ['es2015', 'react'],
         },
       },
     ],
