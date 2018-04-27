@@ -4,8 +4,8 @@ import { matchPath, StaticRouter } from 'react-router-dom';
 
 import routes from './routes';
 import renderFullPage from './renderFullPage';
-import getPokemon from '../services/getPokemon';
-import App from '../components/App';
+import getPokemon from '../shared/services/getPokemon';
+import App from '../shared/components/App';
 
 export default function router(req, res) {
   const match = routes.reduce(
@@ -21,7 +21,6 @@ export default function router(req, res) {
   }
   return getPokemon.withAbility('telepathy')
     .then((resp) => {
-      console.log('test');
       const pokemon = { list: resp.data.pokemon };
       const context = {};
       const html = renderToString((

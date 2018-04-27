@@ -6,10 +6,11 @@ import router from './router';
 
 const app = express();
 
-const assets = express.static(path.join(__dirname, '../'));
-
+const client = express.static(path.join(__dirname, '../client'));
+const shared = express.static(path.join(__dirname, '../shared'));
 app.use(cors());
-app.use(assets);
+app.use(client);
+app.use(shared);
 
 app.get('*', router);
 
