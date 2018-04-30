@@ -20,11 +20,14 @@
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.1",
     "gulp-cli": "^2.0.1",
+    "gulp-nodemon": "^2.2.1",
+    "gulp-sequence": "^1.0.0",
     "html-webpack-plugin": "^3.2.0",
     "react": "^16.3.2",
     "react-dev-utils": "^5.0.1",
     "react-dom": "^16.3.2",
-    "react-router-dom": "^4.2.2"
+    "react-router-dom": "^4.2.2",
+    "run-sequence": "^2.2.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -37,6 +40,7 @@
     "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
+    "gulp-nodemon": "^2.2.1",
     "nodemon": "^1.17.3",
     "parallelshell": "^3.0.2",
     "webpack": "^4.6.0",

@@ -4,7 +4,8 @@ const webpack = require('webpack');
 const webpackConfig = require('./webpack.config.js');
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const printBuildError = require('react-dev-utils/printBuildError');
-
+const runSequence = require('run-sequence');
+const nodemon = require('gulp-nodemon');
 
 /* Builds each javascript file individually
 using Babel, and copy them to the "build" folder.
@@ -40,3 +41,16 @@ gulp.task('build-client', (callback) => {
   });
 });
 
+gulp.task('run-server', callback => nodemon({
+  script: './build/server/index.js',
+  ext: 'js html',
+  env: { NODE_ENV: 'development' },
+}));
+
+gulp.task('watch-everything', () => (
+  gulp.watch('./app/**.*', ['build-individual-files', 'build-client'])
+));
+
+gulp.task('dev', () => (
+  runSequence(['build-individual-files', 'build-client', 'run-server'], ['watch-everything'])
+));
