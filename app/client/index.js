@@ -2,7 +2,7 @@ import React from 'react';
 import { hydrate } from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import App from '../shared/components/App';
+import App from '../shared/compodfnents/App';
 
 hydrate(
   (

@@ -3,6 +3,7 @@ const babel = require('gulp-babel');
 const webpack = require('webpack');
 const webpackConfig = require('./webpack.config.js');
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
+const printBuildError = require('react-dev-utils/printBuildError');
 
 
 /* Builds each javascript file individually
@@ -17,11 +18,10 @@ gulp.task('build-individual-files', () => (
 /* uses webpack to bundle all the file together and also babel
 to compile react/es6 */
 gulp.task('build-client', (callback) => {
-  const compiler = webpack(webpackConfig);
-  compiler.plugin('invalid', () => {
-    console.log('Compiling...');
-  });
-  compiler.plugin('done', (stats) => {
+  const compiler = webpack(webpackConfig, (err, stats) => {
+    if (err) {
+      printBuildError(err);
+    }
     const rawMessages = stats.toJson({}, true);
     const messages = formatWebpackMessages(rawMessages);
     if (!messages.errors.length && !messages.warnings.length) {
