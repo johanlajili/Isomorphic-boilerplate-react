@@ -19,16 +19,19 @@ export default function router(req, res) {
     res.status(404).send('page not found');
     return null;
   }
-  return getPokemon.withAbility('telepathy')
-    .then((resp) => {
-      const pokemon = { list: resp.data.pokemon };
-      const context = {};
-      const html = renderToString((
-        <StaticRouter context={context} location={req.url} >
-          <App pokemon={pokemon} />
-        </StaticRouter>
-      ));
-      res.status(200).send(renderFullPage(html, pokemon));
-    })
-    .catch(err => res.status(404).send(`${err}: Oh no error`));
+  const context = {};
+  renderToString((
+    <StaticRouter context={context} location={req.url} >
+      <App/>
+    </StaticRouter>
+  ));
+  context.appData.then(()=>{
+    const html = renderToString((
+      <StaticRouter context={context} location={req.url} >
+        <App/>
+      </StaticRouter>
+    ));
+    console.log(html);
+    res.status(200).send(renderFullPage(html, context.appData));
+  })
 }
