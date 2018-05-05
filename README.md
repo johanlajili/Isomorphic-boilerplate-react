@@ -10,6 +10,12 @@ Honestly you shouldn't. Or any other boilerplate for SSR for that matter. I trul
 Without going into too much details, the application is cut into multiple **services**. 
 * The ***universal-web-service*** is the main one, which serve the webpage to the user. When the user hits a route, it renders the application server side, including making HTTP request to other services, and sends it to the user. The client then makes call directly to other services when navigating. 
 * The ***persistence*** service is responsible for dealing with storing and retrieving data to a database. In this particuliar use case I will use mongoDB, but any other DB would work.
-* The **API-xxxx** services are all based on connecting another client 
+* The **API-xxxx** services are all about connected to external services or providing services of their own. This is where you put custom logic to your application. Those are called by the front-end and the backend.
 
-[tbc]
+## TODO
+[x] Create a basic building process with babel for the serverside, and webpack for the client side
+[x] Create a workflow in gulp to run those building tasks as well as watching and reload.
+[x] Separate production and development build
+[x] Create a fake api-service returning a json on a route
+[x] Connecting to that service on the ssr, both client and server, avoiding unnecessary request
+[ ] Create a persistence service with api and connect to it
